@@ -1,5 +1,5 @@
 import cheerio from 'cheerio';
-import saveAs from 'file-saver';
+import filesaver from 'file-saver';
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -47,16 +47,22 @@ async function fetchRawImageData() {
 
   // Testing on one image file.
   const rawImageData = await fetch(topTenImages[0], { cache: 'no-cache' });
-  return rawImageData.blob();
+  // Converting the blob into text that can be used to store in an image file.
+  return await rawImageData.blob();
 }
 
 async function processRawImageData() {
   // Awaiting images array to finish processing.
   const rawImagesData = await fetchRawImageData();
-
+  //
+  //
   // Create object URL from raw image data.
-  const rawDataURL = URL.createObjectURL(rawImagesData);
+  const rawDataURL = rawImagesData; // Currently just reassigned w/o changes, for later usage
   console.log(rawDataURL);
 }
 
 processRawImageData();
+
+// QUESTIONS
+// 1. Do we have to convert blobs into a different format?
+// 2.
