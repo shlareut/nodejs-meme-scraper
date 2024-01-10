@@ -1,8 +1,9 @@
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
-const websiteBody = function (website) {
-  return fetch(website, { cache: 'no-cache' }).then((response) =>
-    console.log(response.statusText),
-  );
-};
 
-websiteBody(website);
+async function fetchWebsite() {
+  let request = await fetch(website, { cache: 'no-cache' });
+  let result = await request.text();
+  console.log(result);
+}
+
+fetchWebsite();
