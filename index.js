@@ -26,7 +26,8 @@ async function extractImages() {
 
 async function processImages() {
   const images = await extractImages();
-  console.log(images);
+  const topTenImages = images.slice(0, 10);
+  console.log(topTenImages);
 }
 
 processImages();
