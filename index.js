@@ -1,5 +1,4 @@
 import cheerio from 'cheerio';
-import filesaver from 'file-saver';
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
