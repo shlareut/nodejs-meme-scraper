@@ -1,14 +1,19 @@
+import { parseFromString } from 'dom-parser';
+
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
 
-async function fetchWebsite() {
-  let request = await fetch(website, { cache: 'no-cache' });
-  let result = await request.text();
-  return result;
-}
+new XMLHttpRequest();
 
-async function websiteBody() {
-  let body = await fetchWebsite();
-  console.log(body);
-}
+// async function fetchWebsite() {
+//   let request = await fetch(website, { cache: 'no-cache' });
+//   let result = await request.text();
+//   return result;
+// }
 
-websiteBody();
+// async function processWebsite() {
+//   let body = await fetchWebsite();
+//   let HTMLBody = parseFrom;
+//   console.log(body);
+// }
+
+// processWebsite();
