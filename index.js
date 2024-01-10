@@ -1,4 +1,5 @@
 import cheerio from 'cheerio';
+import saveAs from 'file-saver';
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -47,13 +48,15 @@ async function fetchRawImageData() {
   // Testing on one image file.
   const rawImageData = await fetch(topTenImages[0], { cache: 'no-cache' });
   return rawImageData.blob();
-
-  // console.log(topTenImages[0]);
 }
 
 async function processRawImageData() {
+  // Awaiting images array to finish processing.
   const rawImagesData = await fetchRawImageData();
-  console.log(rawImagesData);
+
+  // Create object URL from raw image data.
+  const rawDataURL = URL.createObjectURL(rawImagesData);
+  console.log(rawDataURL);
 }
 
 processRawImageData();
