@@ -56,13 +56,13 @@ async function processRawImageData() {
   const rawImagesData = await fetchRawImageData();
   //
   //
-  // Create object URL from raw image data.
-  const rawDataURL = rawImagesData; // Currently just reassigned w/o changes, for later usage
+  // Create blob object URL from raw image data.
+  const rawDataURL = URL.createObjectURL(rawImagesData);
   console.log(rawDataURL);
 }
 
 processRawImageData();
 
 // QUESTIONS
-// 1. Do we have to convert blobs into a different format?
-// 2.
+// 1. Is it even the right way to fetch an image and convert it into a blob object?
+// 2. How can I convert or store blob objects as an image?
