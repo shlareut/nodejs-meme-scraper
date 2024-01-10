@@ -8,6 +8,7 @@
   },
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "ISC",
   "dependencies": {
     "dom-parser": "^1.1.5"
