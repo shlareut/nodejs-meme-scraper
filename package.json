@@ -11,6 +11,6 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "dom-parser": "^1.1.5"
+    "cheerio": "1.0.0-rc.12"
   }
 }

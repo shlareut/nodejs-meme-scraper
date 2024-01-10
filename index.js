@@ -1,4 +1,4 @@
-import { parseFromString } from 'dom-parser';
+import cheerio from 'cheerio';
 
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
 
@@ -10,9 +10,10 @@ async function fetchWebsite() {
 
 async function processWebsite() {
   const text = await fetchWebsite();
-  const html = parseFromString(text);
-  console.log(html);
-  // console.log(html.querySelector('img'));
+  // const html = parseFromString(text);
+  const html = cheerio.load(text);
+  const img = html('#images').html();
+  console.log(img);
 }
 
 processWebsite();
