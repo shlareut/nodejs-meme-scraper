@@ -9,7 +9,7 @@ async function fetchWebsite() {
   return result;
 }
 
-async function processWebsite() {
+async function extractImages() {
   // Await for fetchWebsite before loading HTML string into Cheerio string to HTML parser.
   const textContent = await fetchWebsite();
   const $ = cheerio.load(textContent);
@@ -20,8 +20,13 @@ async function processWebsite() {
     imageArr.push($(element).attr('src'));
   });
 
-  // Log imageArr to console for reference.
-  console.log(imageArr);
+  // Return image array to be used in next function
+  return imageArr;
 }
 
-processWebsite();
+async function processImages() {
+  const images = await extractImages();
+  console.log(images);
+}
+
+processImages();
