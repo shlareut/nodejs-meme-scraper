@@ -5,9 +5,8 @@ const website = 'https://memegen-link-examples-upleveled.netlify.app/';
 
 async function fetchWebsiteTextContent() {
   // Fetch website html (string) asynchronously.
-  const getWebsiteTextContent = await fetch(website, { cache: 'no-cache' });
-  const websiteTextContent = await getWebsiteTextContent.text();
-  return websiteTextContent;
+  const websiteTextContent = await fetch(website, { cache: 'no-cache' });
+  return websiteTextContent.text();
 }
 
 async function extractImageUrls() {
@@ -46,9 +45,15 @@ async function fetchRawImageData() {
   //
 
   // Testing on one image file.
-  // const getImageData
+  const rawImageData = await fetch(topTenImages[0], { cache: 'no-cache' });
+  return rawImageData.blob();
 
-  console.log(topTenImages);
+  // console.log(topTenImages[0]);
 }
 
-fetchRawImageData();
+async function processRawImageData() {
+  const rawImagesData = await fetchRawImageData();
+  console.log(rawImagesData);
+}
+
+processRawImageData();
