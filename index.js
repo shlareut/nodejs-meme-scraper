@@ -16,7 +16,7 @@ async function extractImageUrls() {
 
   // Iterate through all <img> tags, extract the "src" attribute and push them into imageArr array.
   const imagesArray = [];
-  $('img').each(function (index, element) {
+  $('img').each(function (_index, element) {
     imagesArray.push($(element).attr('src'));
   });
 
