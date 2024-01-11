@@ -1,3 +1,4 @@
+import * as fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
 
 // Create constant with website that should be scraped.
