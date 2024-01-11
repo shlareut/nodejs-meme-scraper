@@ -15,6 +15,8 @@
     "node-base64-image": "^2.0.6"
   },
   "devDependencies": {
-    "@types/file-saver": "^2.0.7"
+    "@types/file-saver": "^2.0.7",
+    "eslint-config-upleveled": "^7.5.0",
+    "typescript": "^5.3.3"
   }
 }
