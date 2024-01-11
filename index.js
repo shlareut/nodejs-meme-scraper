@@ -1,4 +1,4 @@
-import cheerio from 'cheerio';
+import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
