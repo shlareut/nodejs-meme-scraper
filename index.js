@@ -12,7 +12,7 @@ function makeProgress(step) {
 }
 
 // Fetch website html (string) asynchronously.
-makeProgress('Starting');
+makeProgress('Processing');
 const fetchWebsite = await fetch(website, { cache: 'no-cache' });
 const websiteContent = await fetchWebsite.text();
 
@@ -61,11 +61,4 @@ for (const i of topTenImagesData) {
   imageCount++;
 }
 
-makeProgress('Completed');
-// let imageCount = 1;
-// for (const i of topTenImagesURLs) {
-//   imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
-//   const image = await encode(i);
-//   await decode(image, { fname: `./memes/${imageCount}`, ext: 'jpg' });
-//   imageCount++;
-// }
+makeProgress('Success!');
