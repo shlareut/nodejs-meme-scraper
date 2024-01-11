@@ -1,7 +1,7 @@
 import * as fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
 import process from 'node:process';
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
-import { decode, encode } from 'node-base64-image'; // Library to extract Base64 from image URLs
+import { encode } from 'node-base64-image'; // Library to extract Base64 from image URLs
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -44,6 +44,10 @@ for (const i of topTenImagesURLs) {
   const imageData = await encode(i);
   await topTenImagesData.push(imageData);
 }
+
+// Create meme folder.
+makeProgress('..........');
+await fs.mkdir('./memes');
 
 // Initialize a counter for naming the image files.
 makeProgress('..........');
