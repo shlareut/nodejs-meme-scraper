@@ -1,8 +1,18 @@
-# Meme image scraper written in Node.js
+# Meme image scraper by Lars
 
-## Functionality
+## Core features
 
-1. Download HTML content of a specific website
-2. Search for HTML image tags
-3. Extract image URLs from HTML tags
-4. Download the images in a local directory called 'memes'
+1. Fetch HTML string from a website (currently 'https://memegen-link-examples-upleveled.netlify.app/')
+2. Parse string into HTML format
+3. Extract all URLs inside <img> tags
+4. Store extracted URLs in an array
+5. Create a new array of the first ten images
+6. Fetch base64 data from each URL
+7. Store base64 data in a new array
+8. Check for './memes' directory and create it if not already existing
+9. Create numbered '.jpg' file for each array item, starting with '01.jpg'
+10. Overwrite data when run program again
+
+## Additional features
+
+- Show progress bar in the console
