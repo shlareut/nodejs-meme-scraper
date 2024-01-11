@@ -21,15 +21,23 @@ parseToHTML('img').each(function (_index, element) {
 });
 
 // Create new array consisting of the first ten images.
-const topTenImages = imagesArray.slice(0, 10);
+const topTenImagesURLs = imagesArray.slice(0, 10);
 
-// ADD CODE HERE
+// Create empty array for storing base64 image data
+const topTenImagesData = [];
 
-// ===
-// ===
-// Testing extraction for one image only.
-// ===
-// ===
+// Loop through image URLs, extract base64 image data and push to empty array.
+for (let i of topTenImagesURLs) {
+  const imageData = await encode(i);
+  await topTenImagesData.push(imageData);
+}
 
-const image = await encode(topTenImages[0]);
-await decode(image, { fname: './memes/example', ext: 'jpeg' });
+// Initialize a counter for naming the image files.
+let imageCount = 1;
+
+// Loop through base64 image array and create .jpg files for each, increase counter for naming.
+for (let i of topTenImagesData) {
+  imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
+  await fs.writeFile(`./memes/${imageCount}.jpg`, i);
+  imageCount++;
+}
