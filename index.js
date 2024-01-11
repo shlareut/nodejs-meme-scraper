@@ -1,13 +1,22 @@
-import { fstatSync } from 'node:fs';
+import fss from 'node:fs'; // Synchronous package to enable interactions with the file system
 import fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
-import process from 'node:process';
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
-import fss from 'fs'; // Synchronous package to enable interactions with the file system
 import { encode } from 'node-base64-image'; // Library to extract Base64 from image URLs
 import ProgressBar from 'progress'; // Library for a terminal progress bar.
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
+
+// Define progress bar
+console.log('\nscraping...');
+const bar = new ProgressBar(':bar', { total: 75 });
+const timer = setInterval(function () {
+  bar.tick();
+  if (bar.complete) {
+    console.log('...completed\n');
+    clearInterval(timer);
+  }
+}, 20);
 
 // Fetch website html (string) asynchronously.
 const fetchWebsite = await fetch(website, { cache: 'no-cache' });
@@ -38,7 +47,7 @@ for (const i of topTenImagesURLs) {
 
 // Check if meme folder exists and if not, create it.
 if (!fss.existsSync('./memes')) {
-  fs.mkdir('./memes');
+  await fs.mkdir('./memes');
 }
 
 // Initialize a counter for naming the image files.
