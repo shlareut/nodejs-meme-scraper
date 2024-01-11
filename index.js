@@ -1,5 +1,6 @@
 import * as fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
+import { decode, encode } from 'node-base64-image'; // Library to extract Base64 from image URLs
 
 // Create constant with website that should be scraped.
 const website = 'https://memegen-link-examples-upleveled.netlify.app/';
@@ -29,9 +30,6 @@ const topTenImages = imagesArray.slice(0, 10);
 // Testing extraction for one image only.
 // ===
 // ===
-const rawImageData = await fetch(topTenImages[0], { cache: 'no-cache' });
-const rawImageBlob = await rawImageData.blob();
 
-const rawDataURL = URL.createObjectURL(rawImageBlob);
-
-console.log(rawDataURL);
+const image = await encode(topTenImages[0]);
+await decode(image, { fname: './memes/example', ext: 'jpeg' });
