@@ -40,10 +40,7 @@ async function fetchRawImageData() {
   // Await output from array processing function.
   const topTenImages = await processImagesArray();
 
-  // TODO: Iterate through the array, fetch the data and push into new array.
-  //
-  //
-  //
+  // === TODO: Iterate through the array, fetch the data and push into new array. ===
 
   // Testing on one image file.
   const rawImageData = await fetch(topTenImages[0], { cache: 'no-cache' });
