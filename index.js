@@ -46,22 +46,7 @@ for (const i of topTenImagesURLs) {
   await topTenImagesData.push(imageBuffer);
 }
 
-// // Check if meme folder exists and if not, create it.
-// if (!fss.existsSync('./memes')) {
-//   await fs.mkdir('./memes');
-// }
-
-// Testing
-
-function createImageFiles() {
-  let imageCount = 1;
-  for (const i of topTenImagesData) {
-    imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
-    fs.writeFile(`./memes/${imageCount}.jpg`, i);
-    imageCount++;
-  }
-}
-
+// Check if ./memes directory exists; if yes, call createImageFiles(); if not, create first and then call function.
 fs.access('./memes', fs.constants.R_OK)
   .then(() => createImageFiles())
   .catch(() => {
@@ -69,14 +54,14 @@ fs.access('./memes', fs.constants.R_OK)
     createImageFiles();
   });
 
-// Testing
-
-// // Initialize a counter for naming the image files.
-// let imageCount = 1;
-
-// // Loop through base64 image array and create .jpg files for each, increase counter for naming.
-// for (const i of topTenImagesData) {
-//   imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
-//   await fs.writeFile(`./memes/${imageCount}.jpg`, i);
-//   imageCount++;
-// }
+// Function for creating image files
+function createImageFiles() {
+  // Init counter for naming image files from 01. to 10.jpg
+  let imageCount = 1;
+  // Loop through image buffers and create image files
+  for (const i of topTenImagesData) {
+    imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
+    fs.writeFile(`./memes/${imageCount}.jpg`, i);
+    imageCount++;
+  }
+}
