@@ -1,4 +1,4 @@
-// import fss from 'node:fs'; // Synchronous package to enable interactions with the file system
+import fss from 'node:fs'; // Synchronous package to enable interactions with the file system
 import fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
 import ProgressBar from 'progress'; // Library for a terminal progress bar.
@@ -46,22 +46,17 @@ for (const i of topTenImagesURLs) {
   await topTenImagesData.push(imageBuffer);
 }
 
-// Check if ./memes directory exists; if yes, call createImageFiles(); if not, create first and then call function.
-fs.access('./memes', fs.constants.R_OK)
-  .then(() => createImageFiles())
-  .catch(() => {
-    fs.mkdir('./memes');
-    createImageFiles();
-  });
+// Check if meme folder exists and if not, create it.
+if (!fss.existsSync('./memes')) {
+  await fs.mkdir('./memes');
+}
 
-// Function for creating image files
-function createImageFiles() {
-  // Init counter for naming image files from 01. to 10.jpg
-  let imageCount = 1;
-  // Loop through image buffers and create image files
-  for (const i of topTenImagesData) {
-    imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
-    fs.writeFile(`./memes/${imageCount}.jpg`, i);
-    imageCount++;
-  }
+// Initialize a counter for naming the image files.
+let imageCount = 1;
+
+// Loop through base64 image array and create .jpg files for each, increase counter for naming.
+for (const i of topTenImagesData) {
+  imageCount = imageCount < 10 ? '0' + imageCount : imageCount;
+  await fs.writeFile(`./memes/${imageCount}.jpg`, i);
+  imageCount++;
 }
