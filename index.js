@@ -1,7 +1,6 @@
 import fss from 'node:fs'; // Synchronous package to enable interactions with the file system
 import fs from 'node:fs/promises'; // Promise-based Node.js module to enable interactions with the file system
 import cheerio from 'cheerio'; // Library for parsing and manipulating HTML
-import { encode } from 'node-base64-image'; // Library to extract Base64 from image URLs
 import ProgressBar from 'progress'; // Library for a terminal progress bar.
 
 // Create constant with website that should be scraped.
@@ -41,8 +40,10 @@ const topTenImagesData = [];
 
 // Loop through image URLs, extract base64 image data and push to empty array.
 for (const i of topTenImagesURLs) {
-  const imageData = await encode(i);
-  await topTenImagesData.push(imageData);
+  const imageData = await fetch(i, { cache: 'no-cache' });
+  const imageArrayBuffer = await imageData.arrayBuffer();
+  const imageBuffer = await Buffer.from(imageArrayBuffer);
+  await topTenImagesData.push(imageBuffer);
 }
 
 // Check if meme folder exists and if not, create it.
